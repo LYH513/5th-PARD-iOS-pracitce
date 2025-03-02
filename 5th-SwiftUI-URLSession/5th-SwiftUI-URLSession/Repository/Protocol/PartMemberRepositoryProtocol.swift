@@ -8,5 +8,5 @@
 import Foundation
 
 protocol PartMemberRepositoryProtocol {
-    func fetchPartMembers() async throws -> [PartMemberModel]
+    func fetchPartMembers(_ partId: String) async throws -> [PartMemberModel]
 }

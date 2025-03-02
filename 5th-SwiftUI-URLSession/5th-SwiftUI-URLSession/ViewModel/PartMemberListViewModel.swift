@@ -13,18 +13,20 @@ final class PartMemberListViewModel {
     
     var partsList: [PartModel] = []
     
-    private let repository : PartRepositoryProtocol
+    private let partRepository : PartRepositoryProtocol
+    private let memberRepository : PartMemberRepositoryProtocol
     
-    init(partRepository: PartRepositoryProtocol) {
-        self.repository = partRepository
+    init(partRepository: PartRepositoryProtocol,
+         memberRepository: PartMemberRepositoryProtocol) {
+        self.partRepository = partRepository
+        self.memberRepository = memberRepository
     }
     
     func getAllPartsMembers() async {
         do{
-            partsList = try await repository.fetchParts()
-            print(partsList)
+            partsList = try await partRepository.fetchParts()
         } catch{
-            print(error)
+            print("❌ Error : \(error)")
         }
     }
     

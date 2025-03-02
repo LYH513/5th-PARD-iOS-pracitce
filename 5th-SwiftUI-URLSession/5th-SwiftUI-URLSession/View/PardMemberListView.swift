@@ -32,7 +32,11 @@ struct PardMemberListView: View {
 
 #Preview {
     let partRepository = PartRepositoryImpl()
-    let viewModel = PartMemberListViewModel(partRepository: partRepository)
+    let partMemberRepository = PartMemberRepositoryImpl()
+    
+    let viewModel = PartMemberListViewModel(
+        partRepository: partRepository,
+        memberRepository: partMemberRepository)
     
     PardMemberListView(partMemberListViewModel: viewModel)
 }
