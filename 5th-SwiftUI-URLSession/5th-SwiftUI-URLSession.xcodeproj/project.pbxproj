@@ -30,7 +30,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		14C3B0A22D72122F0012EEF5 /* 5th-SwiftUI-URLSession */ = {
+		149ACE212D74BCEA00FB5667 /* 5th-SwiftUI-URLSession */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = "5th-SwiftUI-URLSession";
 			sourceTree = "<group>";
@@ -75,7 +75,7 @@
 		14C3B0972D72122F0012EEF5 = {
 			isa = PBXGroup;
 			children = (
-				14C3B0A22D72122F0012EEF5 /* 5th-SwiftUI-URLSession */,
+				149ACE212D74BCEA00FB5667 /* 5th-SwiftUI-URLSession */,
 				14C3B0B32D7212320012EEF5 /* 5th-SwiftUI-URLSessionTests */,
 				14C3B0BD2D7212320012EEF5 /* 5th-SwiftUI-URLSessionUITests */,
 				14C3B0A12D72122F0012EEF5 /* Products */,
@@ -108,7 +108,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				14C3B0A22D72122F0012EEF5 /* 5th-SwiftUI-URLSession */,
+				149ACE212D74BCEA00FB5667 /* 5th-SwiftUI-URLSession */,
 			);
 			name = "5th-SwiftUI-URLSession";
 			packageProductDependencies = (
@@ -395,7 +395,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"5th-SwiftUI-URLSession/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"5th-SwiftUI-URLSession/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = QPXSR9M985;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -424,7 +424,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"5th-SwiftUI-URLSession/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"5th-SwiftUI-URLSession/Resources/Preview Content\"";
 				DEVELOPMENT_TEAM = QPXSR9M985;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
