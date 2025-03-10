@@ -141,7 +141,10 @@ struct ContentView: View {
         do {
             //UserModel의 배열 형태로 디코딩하여 결과값을 반환함
             let decoder = JSONDecoder()
-            return try decoder.decode([UserModel].self, from: data)
+            let data = try decoder.decode([UserModel].self, from: data)
+            print(data)
+            
+            return data
         }
         catch {
             throw ErrorType.invalidData

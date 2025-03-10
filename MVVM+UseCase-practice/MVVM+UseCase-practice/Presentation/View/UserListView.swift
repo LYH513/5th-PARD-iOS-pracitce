@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct UserListView: View {
-    @State private var userViewModel = UserViewModel()
+    @State private var userViewModel: UserViewModel
+    
+    init(userViewModel: UserViewModel) {
+        self.userViewModel = userViewModel
+    }
     
     @State private var textField: String = ""
     
@@ -25,7 +29,7 @@ struct UserListView: View {
                     .padding()
                 
                 Button(action:{
-                    userViewModel.filterSearchList(textField)
+                    userViewModel.getUserList(textField)
                 }){
                     Text("검색")
                 }
@@ -46,7 +50,7 @@ struct UserListView: View {
             }
             
             List{
-                ForEach(userViewModel.filteredUserList){ user in
+                ForEach(userViewModel.userList){ user in
                     VStack(alignment: .leading , spacing: 0){
                         Text(user.name)
                             .font(.title)
@@ -62,7 +66,7 @@ struct UserListView: View {
                 SheetAddUserView(
                     showSheet: $showSheet,
                     addNewUser : { name, part in
-                        userViewModel.addNewUser(name: name, part: part)
+                        userViewModel.addUser(name: name, part: part)
                     }
                 )
             })
@@ -72,6 +76,9 @@ struct UserListView: View {
             .navigationBarItems(trailing: Button("추가"){
                 showSheet = true
             })
+            .onAppear{
+                userViewModel.getUserList("")
+            }
             
         } // : NavigationStack
     }
@@ -79,5 +86,16 @@ struct UserListView: View {
 }
 
 #Preview {
-    UserListView()
+    
+    // repository
+    let repository = UserRepositoryImpl()
+    
+    // useCase
+    let getUserListUseCaseImpl = GetUserListUseCaseImpl(repository: repository)
+    let addUserUseCaseImpl = AddUserUseCaseImpl(repository: repository)
+    
+    //ViewModel
+    let viewModel = UserViewModel(getUserListUseCase:getUserListUseCaseImpl , addUserUseCase: addUserUseCaseImpl)
+    
+    UserListView(userViewModel: viewModel)
 }
