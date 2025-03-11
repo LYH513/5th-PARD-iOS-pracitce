@@ -12,12 +12,19 @@ final class UserRepositoryImpl : UserRepository {
     // 서버의 데이터 저장소 역할(서버 대신 임시로 사용할 배열임)
     private var users: [UserModel] = []
     
-    // 초기 데이터 세팅 가능하게 하기
-    // 테스트용으로 데이터를 초기화하거나 조화하기 위한 역할
-    // users에 직접 접근하는 것은 X
-    var mockUser: [UserModel] {
-            get { users } // 외부에서 값을 읽을 때 users 값 반환
-            set { users = newValue } // 외부에서 값을 넣으면 users에 할당
+    // 생성자에서 기본 MockData 세팅
+    init() {
+        let names: [String] = ["이유현", "유재혁", "권채은", "김우현", "김나임", "김민규"]
+        let parts: [String] = ["iOS", "iOS", "Web", "Web", "Server", "Server"]
+
+        var newUserList: [UserModel] = []
+
+        for i in 0..<names.count {
+            let newUser = UserModel(name: names[i], part: parts[i])
+            newUserList.append(newUser)
+        }
+
+        self.users = newUserList
     }
     
     func fetchUsers() -> [UserModel] {
@@ -28,3 +35,4 @@ final class UserRepositoryImpl : UserRepository {
         users.append(newUser)
     }
 }
+
