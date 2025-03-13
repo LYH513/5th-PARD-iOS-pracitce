@@ -25,18 +25,25 @@ struct PardMemberListView: View {
             
         } // : NavigationStack
         .task {
-            await partMemberListViewModel.getAllPartsMembers()
+
         }
     }
 }
 
 #Preview {
+    // repository
     let partRepository = PartRepositoryImpl()
     let partMemberRepository = PartMemberRepositoryImpl()
     
+    // UseCase
+    let partUseCase = PartUseCaseImpl(repository: partRepository)
+    let partMemberUseCase = PartMemberUseCaseImpl(repository: partMemberRepository)
+    
+    // ViewModel
     let viewModel = PartMemberListViewModel(
-        partRepository: partRepository,
-        memberRepository: partMemberRepository)
+        partUseCase: partUseCase,
+        partMemberUseCase: partMemberUseCase
+    )
     
     PardMemberListView(partMemberListViewModel: viewModel)
 }
