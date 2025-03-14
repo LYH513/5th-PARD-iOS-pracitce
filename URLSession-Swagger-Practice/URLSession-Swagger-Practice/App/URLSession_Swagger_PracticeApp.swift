@@ -11,7 +11,7 @@ import SwiftUI
 struct URLSession_Swagger_PracticeApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            UserListView()
         }
     }
 }

@@ -29,9 +29,22 @@
 		1403EFDC2D8284B800862AFF /* URLSession-Swagger-PracticeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "URLSession-Swagger-PracticeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		14CA73F22D82E569008A25D7 /* Exceptions for "URLSession-Swagger-Practice" folder in "URLSession-Swagger-Practice" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 1403EFC12D8284B600862AFF /* URLSession-Swagger-Practice */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		1403EFC42D8284B600862AFF /* URLSession-Swagger-Practice */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				14CA73F22D82E569008A25D7 /* Exceptions for "URLSession-Swagger-Practice" folder in "URLSession-Swagger-Practice" target */,
+			);
 			path = "URLSession-Swagger-Practice";
 			sourceTree = "<group>";
 		};
@@ -399,6 +412,7 @@
 				DEVELOPMENT_TEAM = QPXSR9M985;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "URLSession-Swagger-Practice/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +442,7 @@
 				DEVELOPMENT_TEAM = QPXSR9M985;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "URLSession-Swagger-Practice/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -39,9 +39,6 @@ struct BookReviewListView: View {
                                     .font(.callout)
                                 
                             } // :VStack
-                            .onTapGesture {
-                                showSheet = true
-                            } // : onTapGesture
                             .swipeActions(edge: .trailing, allowsFullSwipe: false) {
                                 Button {
                                     // delete 구현
