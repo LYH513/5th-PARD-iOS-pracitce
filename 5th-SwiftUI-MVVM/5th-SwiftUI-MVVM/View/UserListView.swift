@@ -12,7 +12,6 @@ struct UserListView: View {
     
     @State private var textField: String = ""
     
-    @State private var showSheet: Bool = false
     @State private var name: String = ""
     @State private var part: String = ""
     
@@ -48,9 +47,9 @@ struct UserListView: View {
             } // :List
             .listStyle(.plain)
             .background(.white)
-            .sheet(isPresented: $showSheet, content: {
+            .sheet(isPresented: $userViewModel.showSheet, content: {
                 SheetAddUserView(
-                    showSheet: $showSheet,
+                    showSheet: $userViewModel.showSheet,
                     addNewUser : { name, part in
                         userViewModel.addNewUser(name: name, part: part)
                     }
@@ -60,12 +59,18 @@ struct UserListView: View {
             .navigationTitle("파드 5기 개발 파트장단")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: Button("추가"){
-                showSheet = true
+                userViewModel.toggleSheet()
             })
             
         } // : NavigationStack
     }
     
+}
+
+extension UserViewModel {
+    func hightLightiOSPart(_ part: String) -> Color {
+        return part == "iOS" ? Color.cyan : Color.black
+    }
 }
 
 #Preview {

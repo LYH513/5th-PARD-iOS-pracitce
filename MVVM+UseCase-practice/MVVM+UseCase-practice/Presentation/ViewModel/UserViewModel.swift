@@ -12,6 +12,7 @@ import SwiftUICore
 @Observable
 final class UserViewModel {
     var userList : [UserModel] = []
+    var showSheet: Bool = false
     
     private let getUserListUseCase: GetUserListUseCase
     private let addUserUseCase: AddUserUseCase
@@ -23,9 +24,9 @@ final class UserViewModel {
     
     //MARK: - View에게 데이터를 제공하는 로직 (View와 관련된 로직만)
     
-    // iOS 파트만 색상 하이라이트
-    func hightLightiOSPart(_ part: String) -> Color {
-        return part == "iOS" ? Color.cyan : Color.black
+    // sheet on /off
+    func toggleSheet(){
+        showSheet.toggle()
     }
     
     // 검색어에 따라 유저 불러오기 (전체 / 검색 필터링)

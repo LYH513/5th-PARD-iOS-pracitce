@@ -12,8 +12,9 @@ import SwiftUICore
 
 @Observable
 final class UserViewModel {
-    var userList : [UserModel] = []
-    var filteredUserList : [UserModel] = []
+    var userList: [UserModel] = []
+    var filteredUserList: [UserModel] = []
+    var showSheet: Bool = false
     
     init() {
         userList = getMemoMockData()
@@ -21,8 +22,8 @@ final class UserViewModel {
     }
     
     //MARK: - View에게 가공된 데이터를 제공하는 로직 (View와 관련된 로직만)
-    func hightLightiOSPart(_ part: String) -> Color {
-        return part == "iOS" ? Color.cyan : Color.black
+    func toggleSheet(){
+        showSheet.toggle()
     }
     
     //MARK: - 비지니스 로직 (View와 관련 X)
