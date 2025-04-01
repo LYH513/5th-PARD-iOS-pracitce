@@ -37,26 +37,16 @@ struct UserListView: View {
                 .padding()
             }
             
-            switch userViewModel.showSectionType {
-            case .emptyData:
-                Text("검색 결과가 아무것도 없어요")
-                    .font(.title2).bold()
-            case .onlyOneData:
-                Text("검색 결과가 하나밖에 없어요")
-                    .font(.title2).bold()
-            case .twoMore(let dataNum):
-                Text("검색 결과가 \(dataNum)개 있어요!")
-                    .font(.title2).bold()
-            }
-            
             List{
                 ForEach(userViewModel.userList){ user in
                     VStack(alignment: .leading , spacing: 0){
                         Text(user.name)
                             .font(.title)
+                            .foregroundStyle(userViewModel.hightLightiOSPart(user.part))
                             .bold()
                         Text(user.part)
                             .font(.title2)
+                            .foregroundStyle(userViewModel.hightLightiOSPart(user.part))
                     } // : VStack
                 } // : loop
             } // :List
