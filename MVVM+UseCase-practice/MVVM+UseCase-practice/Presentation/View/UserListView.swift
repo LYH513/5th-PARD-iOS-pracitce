@@ -42,11 +42,9 @@ struct UserListView: View {
                     VStack(alignment: .leading , spacing: 0){
                         Text(user.name)
                             .font(.title)
-                            .foregroundStyle(userViewModel.hightLightiOSPart(user.part))
                             .bold()
                         Text(user.part)
                             .font(.title2)
-                            .foregroundStyle(userViewModel.hightLightiOSPart(user.part))
                     } // : VStack
                 } // : loop
             } // :List
@@ -73,12 +71,6 @@ struct UserListView: View {
         } // : NavigationStack
     }
     
-}
-
-extension UserViewModel {
-    func hightLightiOSPart(_ part: String) -> Color {
-        return part == "iOS" ? Color.cyan : Color.black
-    }
 }
 
 #Preview {
