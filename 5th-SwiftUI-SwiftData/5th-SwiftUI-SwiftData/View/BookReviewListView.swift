@@ -20,35 +20,17 @@ struct BookReviewListView: View {
             VStack(alignment: .leading, spacing:0){
                 List{
                     ForEach(bookReviewList){ book in
-                        NavigationLink {
-                            SheetBookReiewView(
-                                book: book,
-                                showSheet: $showSheet)
-                        } label: {
-                            VStack(alignment: .leading, spacing: 0){
-                                HStack(spacing: 10){
-                                    Text(book.title)
-                                        .font(.title2).bold()
-                                    
-                                    Text(book.author)
-                                        .font(.body)
-                                    
-                                } // : HStack
-                                
-                                Text(book.review)
-                                    .font(.callout)
-                                
-                            } // :VStack
-                            .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-                                Button {
-                                    // delete 구현
-                                    modelContext.delete(book)
-                                } label: {
-                                    Text("삭제")
-                                }
-                                .tint(.red)
-                            } // : swipeActions
-                        } // : NavigationLink
+                        ZStack(alignment: .leading){
+                            RowView(book: book)
+                            NavigationLink {
+                                SheetBookReiewView(
+                                    book: book,
+                                    showSheet: $showSheet)
+                            } label: {
+                                EmptyView()
+                            } // : NavigationLink
+                            .opacity(0.0)
+                        } // ZStack
                     } // : ForEach
                 } // : List
             } // : VStack
@@ -67,6 +49,38 @@ struct BookReviewListView: View {
         }){
             Text("추가")
         }
+    }
+}
+
+struct RowView : View {
+    @Environment(\.modelContext) private var modelContext
+    
+    let book: BookReivewModel
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0){
+            HStack(spacing: 10){
+                Text(book.title)
+                    .font(.title2).bold()
+                
+                Text(book.author)
+                    .font(.body)
+                
+            } // : HStack
+            
+            Text(book.review)
+                .font(.callout)
+            
+        } // :VStack
+        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+            Button {
+                // delete 구현
+                modelContext.delete(book)
+            } label: {
+                Text("삭제")
+            }
+            .tint(.red)
+        } // : swipeActions
     }
 }
 
