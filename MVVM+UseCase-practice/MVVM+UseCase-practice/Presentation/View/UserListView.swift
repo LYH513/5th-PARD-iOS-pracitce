@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserListView: View {
-    @State private var userViewModel: UserViewModel
+    @Bindable private var userViewModel: UserViewModel
     
     init(userViewModel: UserViewModel) {
         self.userViewModel = userViewModel

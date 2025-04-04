@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PardMemberListView: View {
     
-    @State private var partMemberListViewModel : PartMemberListViewModel
+    @Bindable private var partMemberListViewModel : PartMemberListViewModel
     
     init(partMemberListViewModel: PartMemberListViewModel) {
         self.partMemberListViewModel = partMemberListViewModel
