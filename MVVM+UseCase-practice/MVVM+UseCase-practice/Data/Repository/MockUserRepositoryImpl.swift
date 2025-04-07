@@ -14,12 +14,15 @@ UserRepository 를 준수하는 Mock repository를 만들어 개발 환경에서
 
 final class MockUserRepositoryImpl : UserRepository {
     
+    private var users: [UserModel] = []
+    
     func fetchUsers() -> [UserModel] {
-        return [UserModel(name: "이유현", part: "iOS")]
+        return users
     }
     
     func addUser(_ newUser: UserModel) {
         print("새로운 유저가 추가됐습니다.")
+        users.append(newUser)
     }
     
 }
