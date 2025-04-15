@@ -29,6 +29,9 @@ struct ContentView: View {
     
     @State private var userList: [UserModel] = []
     
+    @State private var editUser: UserModel? = nil
+    
+    @State private var buttonMode: String = "추가"
     @State private var name: String = ""
     @State private var job: String = ""
     
@@ -57,15 +60,29 @@ struct ContentView: View {
                 Button(action:{
                     //post
                     Task{
-                        await postUser(name: name, job: job)
-                        userList = try await getUserList()
+                        if let user = editUser,
+                           let id = user.id
+                        {
+                            await updateUser(id: id, name: name, job: job)
+                            userList = try await getUserList()
+                        } else {
+                            await postUser(name: name, job: job)
+                            userList = try await getUserList()
+                        }
+                        
+                        editUser = nil
+                        buttonMode = "추가"
+                        name = ""
+                        job = ""
+                        
                     }
                     
                 }){
-                    Text("추가")
+                    Text(buttonMode)
                         .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
+                .tint(buttonMode == "확인" ? .yellow : .blue)
                 .padding()
                 
                 List{
@@ -95,15 +112,15 @@ struct ContentView: View {
                             Button {
                                 Task{
                                     // update
-                                    if let id = user.id {
-                                        await updateUser(id: id, name: user.name, job: user.job)
-                                    }
-                                    userList = try await getUserList()
+                                    editUser = user
+                                    buttonMode = "확인"
+                                    name = user.name
+                                    job = user.job
                                 }
                             } label: {
                                 Text("수정")
                             }
-                            .tint(.blue)
+                            .tint(.yellow)
                         } // : swipeActions
                     }
                 } // : List
@@ -121,7 +138,7 @@ struct ContentView: View {
         } // : NavigationStack
     }
     
-    //MARK: - Function
+    //MARK: - API Function
     //MARK: - get
     private func getUserList() async throws -> [UserModel] {
         // 2. URL 만들기
@@ -160,7 +177,7 @@ struct ContentView: View {
         }
         
         // 2. 새로운 데이터 생성
-        let newUser = UserModel(id: nil , name: "이유현", job: "학생")
+        let newUser = UserModel(id: nil , name: name, job: job)
         
         // 3. get이 아닌 경우 URLRequest 객체를 생성하기
         var request = URLRequest(url: url)
@@ -203,7 +220,7 @@ struct ContentView: View {
         // 2. get이 아닌 경우 URLRequest 객체를 생성하기
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
-
+        
         // 3. URLSession 구성 및 URLSession Task를 만든 후 네트워크 요청
         do {
             let (_, response) = try await URLSession.shared.data(for: request)
@@ -227,15 +244,16 @@ struct ContentView: View {
             return
         }
         
+        print("id: \(id) / name: \(name) / job: \(job)")
         // 2. 업데이트할 데이터 생성 - 이름만 바꾸려고해도 put이기 때문에 , age 다 넣어서 보내야함
-        let updateUser = UserModel(id: id, name: "이유현", job: "학생")
+        let updateUser = UserModel(id: id, name: name, job: job)
         
         
         // 3. get이 아닌 경우 URLRequest 객체를 생성하기
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        
         do {
             // 서버에서 json 형태로 데이터를 받기 때문에 우리도 struct로 만들어 놓은 데이터 형태를
             //json 형태로 만들어 줄 필요가 있음. 그래서 쓰는게 JSONEncoder

@@ -10,8 +10,8 @@ import Observation
 
 
 @Observable
-final class UserViewModel {
-    var userList: [UserModel] = []
+final class UserViewModel: ObservableObject {
+    @Published var userList: [UserModel] = []
     var filteredUserList: [UserModel] = []
     var showSheet: Bool = false
     

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UserListView: View {
-    @Bindable private var userViewModel = UserViewModel()
+    @StateObject private var userViewModel = UserViewModel()
     
     @State private var textField: String = ""
     
